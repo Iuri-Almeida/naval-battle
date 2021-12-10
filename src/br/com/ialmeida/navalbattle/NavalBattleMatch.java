@@ -42,9 +42,9 @@ public class NavalBattleMatch {
         placeNewPiece('a', 4, new Carrier(board, Player.BLACK));
         placeNewPiece('a', 5, new Carrier(board, Player.BLACK));
 
-        placeNewPiece('f', 5, new Tankers(board, Player.BLACK));
-        placeNewPiece('f', 6, new Tankers(board, Player.BLACK));
-        placeNewPiece('f', 7, new Tankers(board, Player.BLACK));
-        placeNewPiece('f', 8, new Tankers(board, Player.BLACK));
+        placeNewPiece('f', 5, new Tankers(board, Player.WHITE));
+        placeNewPiece('f', 6, new Tankers(board, Player.WHITE));
+        placeNewPiece('f', 7, new Tankers(board, Player.WHITE));
+        placeNewPiece('f', 8, new Tankers(board, Player.WHITE));
     }
 }

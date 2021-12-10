@@ -20,7 +20,7 @@ public class UI {
 
                 NavalBattlePiece piece = pieces[i][j];
 
-                System.out.print(((piece == null) ? "-" : piece) + " ");
+                printPiece(pieces[i][j]);
 
             }
 
@@ -29,5 +29,21 @@ public class UI {
 
         System.out.println("  a b c d e f g h i j");
 
+    }
+
+    private static void printPiece(NavalBattlePiece piece) {
+        if (piece == null) {
+            System.out.print("-");
+        } else {
+
+            if (piece.getPlayer() == Player.WHITE) {
+                System.out.print(ProgramConstants.WHITE_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+            } else {
+                System.out.print(ProgramConstants.BLACK_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+            }
+
+        }
+
+        System.out.print(" ");
     }
 }
