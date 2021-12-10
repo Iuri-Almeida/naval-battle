@@ -1,12 +1,14 @@
 package br.com.ialmeida.application;
 
-import br.com.ialmeida.boardgame.Board;
-import br.com.ialmeida.boardgame.Position;
+import br.com.ialmeida.navalbattle.NavalBattleMatch;
+import br.com.ialmeida.navalbattle.Player;
 
 public class Program {
 
     public static void main(String[] args) {
-        Board board = new Board(2, 1);
-        System.out.println(board);
+        NavalBattleMatch match = new NavalBattleMatch();
+        UI.printBoard(match.getPieces(), Player.WHITE);
+        System.out.println();
+        UI.printBoard(match.getPieces(), Player.BLACK);
     }
 }
