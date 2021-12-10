@@ -1,5 +1,6 @@
 package br.com.ialmeida.navalbattle;
 
+import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.navalbattle.pieces.Carrier;
@@ -9,7 +10,7 @@ public class NavalBattleMatch {
     private final Board board;
 
     public NavalBattleMatch() {
-        board = new Board(10, 10);
+        board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
 
         initialSetup();
     }
@@ -30,16 +31,20 @@ public class NavalBattleMatch {
         return pieces;
     }
 
-    private void initialSetup() {
-        board.placePiece(new Carrier(board, Player.BLACK), new Position(1, 1));
-        board.placePiece(new Carrier(board, Player.BLACK), new Position(2, 1));
-        board.placePiece(new Carrier(board, Player.BLACK), new Position(3, 1));
-        board.placePiece(new Carrier(board, Player.BLACK), new Position(4, 1));
-        board.placePiece(new Carrier(board, Player.BLACK), new Position(5, 1));
+    private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
+        board.placePiece(piece, new NavalBattlePosition(column, row).toPosition());
+    }
 
-        board.placePiece(new Tankers(board, Player.WHITE), new Position(5, 3));
-        board.placePiece(new Tankers(board, Player.WHITE), new Position(5, 4));
-        board.placePiece(new Tankers(board, Player.WHITE), new Position(5, 5));
-        board.placePiece(new Tankers(board, Player.WHITE), new Position(5, 6));
+    private void initialSetup() {
+        placeNewPiece('a', 1, new Carrier(board, Player.BLACK));
+        placeNewPiece('a', 2, new Carrier(board, Player.BLACK));
+        placeNewPiece('a', 3, new Carrier(board, Player.BLACK));
+        placeNewPiece('a', 4, new Carrier(board, Player.BLACK));
+        placeNewPiece('a', 5, new Carrier(board, Player.BLACK));
+
+        placeNewPiece('f', 5, new Tankers(board, Player.BLACK));
+        placeNewPiece('f', 6, new Tankers(board, Player.BLACK));
+        placeNewPiece('f', 7, new Tankers(board, Player.BLACK));
+        placeNewPiece('f', 8, new Tankers(board, Player.BLACK));
     }
 }
