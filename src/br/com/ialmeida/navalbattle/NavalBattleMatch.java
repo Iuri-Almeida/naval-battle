@@ -31,20 +31,29 @@ public class NavalBattleMatch {
         return pieces;
     }
 
+    public void performMove(NavalBattlePosition targetPosition) {
+        Position target = targetPosition.toPosition();
+        makeMove(target);
+    }
+
+    private void makeMove(Position target) {
+        board.placePiece(new Carrier(board, Player.BLACK), target);
+    }
+
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
         board.placePiece(piece, new NavalBattlePosition(column, row).toPosition());
     }
 
     private void initialSetup() {
-        placeNewPiece('a', 1, new Carrier(board, Player.BLACK));
-        placeNewPiece('a', 2, new Carrier(board, Player.BLACK));
-        placeNewPiece('a', 3, new Carrier(board, Player.BLACK));
-        placeNewPiece('a', 4, new Carrier(board, Player.BLACK));
-        placeNewPiece('a', 5, new Carrier(board, Player.BLACK));
-
-        placeNewPiece('f', 5, new Tankers(board, Player.WHITE));
-        placeNewPiece('f', 6, new Tankers(board, Player.WHITE));
-        placeNewPiece('f', 7, new Tankers(board, Player.WHITE));
-        placeNewPiece('f', 8, new Tankers(board, Player.WHITE));
+//        placeNewPiece('a', 1, new Carrier(board, Player.BLACK));
+//        placeNewPiece('a', 2, new Carrier(board, Player.BLACK));
+//        placeNewPiece('a', 3, new Carrier(board, Player.BLACK));
+//        placeNewPiece('a', 4, new Carrier(board, Player.BLACK));
+//        placeNewPiece('a', 5, new Carrier(board, Player.BLACK));
+//
+//        placeNewPiece('f', 5, new Tankers(board, Player.WHITE));
+//        placeNewPiece('f', 6, new Tankers(board, Player.WHITE));
+//        placeNewPiece('f', 7, new Tankers(board, Player.WHITE));
+//        placeNewPiece('f', 8, new Tankers(board, Player.WHITE));
     }
 }

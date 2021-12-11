@@ -1,6 +1,8 @@
 package br.com.ialmeida.navalbattle;
 
-public class NavalBattleException extends RuntimeException {
+import br.com.ialmeida.boardgame.BoardException;
+
+public class NavalBattleException extends BoardException {
     public NavalBattleException(String msg) {
         super(msg);
     }
