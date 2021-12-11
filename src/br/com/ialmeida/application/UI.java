@@ -57,7 +57,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("  a b c d e f g h i j");
+        System.out.println("   a b c d e f g h i j");
 
     }
 
@@ -68,7 +68,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.print(String.format("%2d", rows - i) + " ");
+            System.out.printf("%2d ", rows - i);
 
             for (int j = 0; j < columns; j++) {
 
@@ -81,7 +81,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("  a b c d e f g h i j");
+        System.out.println("   a b c d e f g h i j");
 
     }
 

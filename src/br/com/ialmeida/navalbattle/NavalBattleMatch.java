@@ -4,8 +4,7 @@ import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
-import br.com.ialmeida.navalbattle.pieces.Carrier;
-import br.com.ialmeida.navalbattle.pieces.Tankers;
+import br.com.ialmeida.navalbattle.pieces.Submarine;
 
 public class NavalBattleMatch {
 
@@ -56,7 +55,7 @@ public class NavalBattleMatch {
     }
 
     private void makeMove(Position target) {
-        Piece piece = (currentPlayer == Player.WHITE) ? new Carrier(board, Player.WHITE) : new Tankers(board, Player.BLACK);
+        Piece piece = (currentPlayer == Player.WHITE) ? new Submarine(board, Player.WHITE) : new Submarine(board, Player.BLACK);
         board.placePiece(piece, target);
     }
 
