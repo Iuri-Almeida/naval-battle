@@ -13,4 +13,9 @@ public class Tankers extends NavalBattlePiece {
     public String toString() {
         return "T";
     }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        return new boolean[getBoard().getRows()][getBoard().getColumns()];
+    }
 }

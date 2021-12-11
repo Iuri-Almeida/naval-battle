@@ -13,4 +13,9 @@ public class Carrier extends NavalBattlePiece {
     public String toString() {
         return "C";
     }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        return new boolean[getBoard().getRows()][getBoard().getColumns()];
+    }
 }

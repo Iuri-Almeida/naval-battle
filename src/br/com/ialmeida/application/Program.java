@@ -32,12 +32,7 @@ public class Program {
                 sc.nextLine();
             }
 
-
-
-
-
         }
-
 
 //        sc.close();
     }
