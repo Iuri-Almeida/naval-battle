@@ -1,8 +1,10 @@
 package br.com.ialmeida.application;
 
+import br.com.ialmeida.boardgame.BoardException;
 import br.com.ialmeida.navalbattle.NavalBattleMatch;
 import br.com.ialmeida.navalbattle.NavalBattlePosition;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -14,14 +16,25 @@ public class Program {
 
         while (true) {
 
-            UI.printBoard(match.getPieces());
+            try {
+                UI.clearScreen();
+                UI.printBoard(match.getPieces());
 
-            System.out.println();
-            System.out.print("Target: ");
+                System.out.println();
+                System.out.print("Target: ");
 
-            NavalBattlePosition target = UI.readNavalBattlePosition(sc);
+                NavalBattlePosition target = UI.readNavalBattlePosition(sc);
 
-            match.performMove(target);
+                match.performMove(target);
+            } catch (BoardException | InputMismatchException e) {
+                System.out.println(e.getMessage() + "\n");
+                System.out.println("Click ENTER to continue.");
+                sc.nextLine();
+            }
+
+
+
+
 
         }
 
