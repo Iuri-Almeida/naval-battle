@@ -14,6 +14,8 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         NavalBattleMatch match = new NavalBattleMatch();
 
+        UI.setupPlayerBoard(match, sc);
+
         while (true) {
 
             try {
@@ -21,8 +23,8 @@ public class Program {
                 UI.printMatch(match);
 
                 UI.clearScreen();
-//                UI.printBoard(match.getPieces(match.getBoard()), match.possibleMoves());
-                UI.printBoard(match.getPieces(match.getComputerBoard()));
+                UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
+//                UI.printBoard(match.getPieces(match.getComputerBoard()));
 
                 System.out.println();
                 System.out.print("Target: ");

@@ -10,11 +10,11 @@ public class NavalBattleMatch {
 
     private int turn;
     private Player currentPlayer;
-    private final Board board;
+    private final Board playerBoard;
     private final Board computerBoard;
 
     public NavalBattleMatch() {
-        board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
+        playerBoard = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
         computerBoard = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
         turn = 1;
         currentPlayer = Player.PERSON;
@@ -30,8 +30,8 @@ public class NavalBattleMatch {
         return currentPlayer;
     }
 
-    public Board getBoard() {
-        return board;
+    public Board getPlayerBoard() {
+        return playerBoard;
     }
 
     public Board getComputerBoard() {
@@ -55,7 +55,7 @@ public class NavalBattleMatch {
     }
 
     public boolean[][] possibleMoves() {
-        return board.possibleMoves();
+        return playerBoard.possibleMoves();
     }
 
     public void performMove(NavalBattlePosition targetPosition) {
@@ -65,8 +65,8 @@ public class NavalBattleMatch {
     }
 
     private void makeMove(Position target) {
-        Piece piece = (currentPlayer == Player.PERSON) ? new Submarine(board, Player.PERSON) : new Submarine(board, Player.COMPUTER);
-        board.placePiece(piece, target);
+//        Piece piece = (currentPlayer == Player.PERSON) ? new Submarine(playerBoard, Player.PERSON) : new Submarine(playerBoard, Player.COMPUTER);
+        playerBoard.placePiece(new Submarine(playerBoard, Player.PERSON), target);
     }
 
     private void nextTurn() {
