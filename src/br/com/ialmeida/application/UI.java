@@ -72,7 +72,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.printf("%2d ", rows - i);
+            System.out.printf("%s%2d %s", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -83,7 +83,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("   a b c d e f g h i j");
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "   a b c d e f g h i j" + ProgramConstants.RESET_COLOR);
 
     }
 
@@ -94,7 +94,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.printf("%2d ", rows - i);
+            System.out.printf("%s%2d %s", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -105,7 +105,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("   a b c d e f g h i j");
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "   a b c d e f g h i j" + ProgramConstants.RESET_COLOR);
 
     }
 
