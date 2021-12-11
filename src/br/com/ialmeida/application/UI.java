@@ -48,7 +48,7 @@ public class UI {
 
                 NavalBattlePosition target = UI.readNavalBattlePosition(sc);
 
-                match.performMove(target);
+                match.performFirstMove(target);
 
                 i++;
             } catch (BoardException | InputMismatchException e) {

@@ -4,7 +4,7 @@ import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
-import br.com.ialmeida.navalbattle.pieces.Submarine;
+import br.com.ialmeida.navalbattle.pieces.*;
 
 public class NavalBattleMatch {
 
@@ -58,6 +58,11 @@ public class NavalBattleMatch {
         return playerBoard.possibleMoves();
     }
 
+    public void performFirstMove(NavalBattlePosition targetPosition) {
+        Position target = targetPosition.toPosition();
+        playerBoard.placePiece(new Submarine(playerBoard, Player.PERSON), target);
+    }
+
     public void performMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
         makeMove(target);
@@ -65,8 +70,19 @@ public class NavalBattleMatch {
     }
 
     private void makeMove(Position target) {
-//        Piece piece = (currentPlayer == Player.PERSON) ? new Submarine(playerBoard, Player.PERSON) : new Submarine(playerBoard, Player.COMPUTER);
-        playerBoard.placePiece(new Submarine(playerBoard, Player.PERSON), target);
+        if (computerBoard.thereIsAPiece(target)) {
+            if (playerBoard.thereIsAPiece(target)) {
+                playerBoard.placePieceWithoutException(new RightShotWithSubmarine(playerBoard, Player.PERSON), target);
+            } else {
+                playerBoard.placePieceWithoutException(new RightShot(playerBoard, Player.PERSON), target);
+            }
+        } else {
+            if (playerBoard.thereIsAPiece(target)) {
+                playerBoard.placePieceWithoutException(new WrongShotWithSubmarine(playerBoard, Player.PERSON), target);
+            } else {
+                playerBoard.placePieceWithoutException(new WrongShot(playerBoard, Player.PERSON), target);
+            }
+        }
     }
 
     private void nextTurn() {

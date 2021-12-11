@@ -98,6 +98,11 @@ public class Board {
         piece.position = position;
     }
 
+    public void placePieceWithoutException(Piece piece, Position position) {
+        pieces[position.getRow()][position.getColumn()] = piece;
+        piece.position = position;
+    }
+
     private boolean positionExists(int row, int column) {
         return row >= 0 && row < rows && column >= 0 && column < columns;
     }
