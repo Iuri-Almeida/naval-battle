@@ -91,7 +91,7 @@ public class UI {
             System.out.print("-" + ProgramConstants.RESET_COLOR);
         } else {
 
-            if (piece.getPlayer() == Player.WHITE) {
+            if (piece.getPlayer() == Player.PERSON) {
                 System.out.print(ProgramConstants.WHITE_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
             } else {
                 System.out.print(ProgramConstants.BLACK_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
