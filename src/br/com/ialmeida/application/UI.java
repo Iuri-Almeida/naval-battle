@@ -44,11 +44,9 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.print((rows - i) + " ");
+            System.out.printf("%2d ", rows - i);
 
             for (int j = 0; j < columns; j++) {
-
-                NavalBattlePiece piece = pieces[i][j];
 
                 printPiece(pieces[i][j], false);
 
@@ -71,8 +69,6 @@ public class UI {
             System.out.printf("%2d ", rows - i);
 
             for (int j = 0; j < columns; j++) {
-
-                NavalBattlePiece piece = pieces[i][j];
 
                 printPiece(pieces[i][j], possibleMoves[i][j]);
 

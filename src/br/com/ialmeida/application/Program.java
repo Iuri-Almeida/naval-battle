@@ -21,7 +21,8 @@ public class Program {
                 UI.printMatch(match);
 
                 UI.clearScreen();
-                UI.printBoard(match.getPieces(), match.possibleMoves());
+//                UI.printBoard(match.getPieces(match.getBoard()), match.possibleMoves());
+                UI.printBoard(match.getPieces(match.getComputerBoard()));
 
                 System.out.println();
                 System.out.print("Target: ");

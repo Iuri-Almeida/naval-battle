@@ -11,9 +11,11 @@ public class NavalBattleMatch {
     private int turn;
     private Player currentPlayer;
     private final Board board;
+    private final Board computerBoard;
 
     public NavalBattleMatch() {
         board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
+        computerBoard = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
         turn = 1;
         currentPlayer = Player.WHITE;
 
@@ -28,7 +30,15 @@ public class NavalBattleMatch {
         return currentPlayer;
     }
 
-    public NavalBattlePiece[][] getPieces() {
+    public Board getBoard() {
+        return board;
+    }
+
+    public Board getComputerBoard() {
+        return computerBoard;
+    }
+
+    public NavalBattlePiece[][] getPieces(Board board) {
 
         int rows = board.getRows();
         int columns = board.getColumns();
@@ -65,19 +75,19 @@ public class NavalBattleMatch {
     }
 
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
-        board.placePiece(piece, new NavalBattlePosition(column, row).toPosition());
+        computerBoard.placePiece(piece, new NavalBattlePosition(column, row).toPosition());
     }
 
     private void initialSetup() {
-//        placeNewPiece('a', 1, new Carrier(board, Player.BLACK));
-//        placeNewPiece('a', 2, new Carrier(board, Player.BLACK));
-//        placeNewPiece('a', 3, new Carrier(board, Player.BLACK));
-//        placeNewPiece('a', 4, new Carrier(board, Player.BLACK));
-//        placeNewPiece('a', 5, new Carrier(board, Player.BLACK));
-//
-//        placeNewPiece('f', 5, new Tankers(board, Player.WHITE));
-//        placeNewPiece('f', 6, new Tankers(board, Player.WHITE));
-//        placeNewPiece('f', 7, new Tankers(board, Player.WHITE));
-//        placeNewPiece('f', 8, new Tankers(board, Player.WHITE));
+        placeNewPiece('a', 1, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('b', 2, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('c', 3, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('d', 4, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('e', 5, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('f', 6, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('g', 7, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('h', 8, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('i', 9, new Submarine(computerBoard, Player.BLACK));
+        placeNewPiece('j', 10, new Submarine(computerBoard, Player.BLACK));
     }
 }
