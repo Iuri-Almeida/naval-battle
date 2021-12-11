@@ -31,6 +31,10 @@ public class NavalBattleMatch {
         return pieces;
     }
 
+    public boolean[][] possibleMoves() {
+        return board.possibleMoves();
+    }
+
     public void performMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
         makeMove(target);

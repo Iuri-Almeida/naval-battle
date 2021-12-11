@@ -43,7 +43,7 @@ public class UI {
 
                 NavalBattlePiece piece = pieces[i][j];
 
-                printPiece(pieces[i][j]);
+                printPiece(pieces[i][j], false);
 
             }
 
@@ -54,9 +54,38 @@ public class UI {
 
     }
 
-    private static void printPiece(NavalBattlePiece piece) {
+    public static void printBoard(NavalBattlePiece[][] pieces, boolean[][] possibleMoves) {
+
+        int rows = pieces.length;
+        int columns = pieces[0].length;
+
+        for (int i = 0; i < rows; i++) {
+
+            System.out.print(String.format("%2d", rows - i) + " ");
+
+            for (int j = 0; j < columns; j++) {
+
+                NavalBattlePiece piece = pieces[i][j];
+
+                printPiece(pieces[i][j], possibleMoves[i][j]);
+
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("  a b c d e f g h i j");
+
+    }
+
+    private static void printPiece(NavalBattlePiece piece, boolean background) {
+
+        if (background) {
+            System.out.print(ProgramConstants.BACKGROUND_COLOR);
+        }
+
         if (piece == null) {
-            System.out.print("-");
+            System.out.print("-" + ProgramConstants.RESET_COLOR);
         } else {
 
             if (piece.getPlayer() == Player.WHITE) {
