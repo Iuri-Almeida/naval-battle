@@ -2,17 +2,31 @@ package br.com.ialmeida.navalbattle;
 
 import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
+import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.navalbattle.pieces.Carrier;
 import br.com.ialmeida.navalbattle.pieces.Tankers;
 
 public class NavalBattleMatch {
+
+    private int turn;
+    private Player currentPlayer;
     private final Board board;
 
     public NavalBattleMatch() {
         board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
+        turn = 1;
+        currentPlayer = Player.WHITE;
 
         initialSetup();
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public NavalBattlePiece[][] getPieces() {
@@ -38,10 +52,17 @@ public class NavalBattleMatch {
     public void performMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
         makeMove(target);
+        nextTurn();
     }
 
     private void makeMove(Position target) {
-        board.placePiece(new Carrier(board, Player.BLACK), target);
+        Piece piece = (currentPlayer == Player.WHITE) ? new Carrier(board, Player.WHITE) : new Tankers(board, Player.BLACK);
+        board.placePiece(piece, target);
+    }
+
+    private void nextTurn() {
+        turn++;
+        currentPlayer = (currentPlayer == Player.WHITE) ? Player.BLACK : Player.WHITE;
     }
 
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {

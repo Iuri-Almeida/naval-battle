@@ -17,6 +17,9 @@ public class Program {
         while (true) {
 
             try {
+
+                UI.printMatch(match);
+
                 UI.clearScreen();
                 UI.printBoard(match.getPieces(), match.possibleMoves());
 

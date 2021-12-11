@@ -1,5 +1,6 @@
 package br.com.ialmeida.application;
 
+import br.com.ialmeida.navalbattle.NavalBattleMatch;
 import br.com.ialmeida.navalbattle.NavalBattlePiece;
 import br.com.ialmeida.navalbattle.NavalBattlePosition;
 import br.com.ialmeida.navalbattle.Player;
@@ -28,6 +29,12 @@ public class UI {
             throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to j10.");
         }
 
+    }
+
+    public static void printMatch(NavalBattleMatch match) {
+        System.out.println();
+        System.out.println("Turn: " + match.getTurn());
+        System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
     }
 
     public static void printBoard(NavalBattlePiece[][] pieces) {
