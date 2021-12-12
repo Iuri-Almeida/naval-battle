@@ -90,7 +90,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            printLine("");
+            printLine(ProgramConstants.INDICATORS_COLOR);
 
             System.out.printf("%s| %s |%s ", ProgramConstants.INDICATORS_COLOR, NUMBER_ROWS[i], ProgramConstants.RESET_COLOR);
 
@@ -103,20 +103,20 @@ public class UI {
             System.out.println();
         }
 
-        printLine("");
+        printLine(ProgramConstants.INDICATORS_COLOR);
 
     }
 
     private static void printPiece(NavalBattlePiece piece) {
 
         if (piece == null) {
-            System.out.print("  |");
+            System.out.print(ProgramConstants.INDICATORS_COLOR + "  |" + ProgramConstants.RESET_COLOR);
         } else {
 
             if (piece.getPlayer() == Player.PERSON) {
-                System.out.print(ProgramConstants.PERSON_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR + " |");
+                System.out.print(ProgramConstants.PERSON_PIECE_COLOR + piece + ProgramConstants.INDICATORS_COLOR + " |" + ProgramConstants.RESET_COLOR);
             } else {
-                System.out.print(ProgramConstants.COMPUTER_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR + " |");
+                System.out.print(ProgramConstants.COMPUTER_PIECE_COLOR + piece + ProgramConstants.INDICATORS_COLOR + " |" + ProgramConstants.RESET_COLOR);
             }
 
         }
