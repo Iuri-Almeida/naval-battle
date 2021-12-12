@@ -1,9 +1,13 @@
 package br.com.ialmeida.boardgame;
 
+import br.com.ialmeida.navalbattle.pieces.RightShot;
+import br.com.ialmeida.navalbattle.pieces.RightShotWithSubmarine;
+
 public class Board {
     private final int rows;
     private final int columns;
     private final Piece[][] pieces;
+    private int hits;
 
     public Board(int rows, int columns) {
 
@@ -14,6 +18,7 @@ public class Board {
         this.rows = rows;
         this.columns = columns;
         pieces = new Piece[rows][columns];
+        hits = 0;
     }
 
     public int getRows() {
@@ -22,6 +27,10 @@ public class Board {
 
     public int getColumns() {
         return columns;
+    }
+
+    public int getHits() {
+        return hits;
     }
 
     public Piece piece(int row, int column) {
@@ -53,6 +62,11 @@ public class Board {
     }
 
     public void placePieceWithoutException(Piece piece, Position position) {
+
+        if (piece instanceof RightShot || piece instanceof RightShotWithSubmarine) {
+            hits++;
+        }
+
         pieces[position.getRow()][position.getColumn()] = piece;
         piece.position = position;
     }

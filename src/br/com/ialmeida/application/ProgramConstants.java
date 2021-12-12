@@ -19,5 +19,6 @@ public class ProgramConstants {
 
     // Game Names
     public static String PLAYER = "JOGADOR";
+    public static String PLAYER_SETUP = "JOGADOR (SETUP)";
     public static String COMPUTER = "COMPUTADOR";
 }

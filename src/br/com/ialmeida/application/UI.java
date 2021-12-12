@@ -41,8 +41,7 @@ public class UI {
         while (i < ProgramConstants.TOTAL_SUBMARINES) {
             try {
                 clearScreen();
-                System.out.println("Player Initial Setup");
-                printBoard(match.getPieces(match.getPlayerBoard()), ProgramConstants.PLAYER, ProgramConstants.PERSON_PIECE_COLOR);
+                printBoard(match.getPieces(match.getPlayerBoard()), ProgramConstants.PLAYER_SETUP, ProgramConstants.PERSON_PIECE_COLOR);
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -77,6 +76,8 @@ public class UI {
 
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
+        System.out.println(ProgramConstants.COMPUTER_PIECE_COLOR + "Computer hits: " + match.getComputerBoard().getHits() + ProgramConstants.RESET_COLOR);
+        System.out.println(ProgramConstants.PERSON_PIECE_COLOR + "Player hits: " + match.getPlayerBoard().getHits() + ProgramConstants.RESET_COLOR);
     }
 
     private static void printBoard(NavalBattlePiece[][] pieces, String title, String color) {
