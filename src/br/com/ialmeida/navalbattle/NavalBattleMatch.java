@@ -161,11 +161,11 @@ public class NavalBattleMatch {
     }
 
     private char generateRandomChar() {
-        return (char) (random.nextInt((ProgramConstants.LAST_COLUMN + 1) - ProgramConstants.FIRST_COLUMN) + ProgramConstants.FIRST_COLUMN);
+        return (char) (random.nextInt((ProgramConstants.LAST_ROW + 1) - ProgramConstants.FIRST_ROW) + ProgramConstants.FIRST_ROW);
     }
 
     private int generateRandomInt() {
-        return random.nextInt(ProgramConstants.ROWS) + 1;
+        return random.nextInt(ProgramConstants.COLUMNS) + 1;
     }
 
     private void placeNewPiece(char row, int column, NavalBattlePiece piece) {

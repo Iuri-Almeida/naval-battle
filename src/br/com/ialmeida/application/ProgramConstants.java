@@ -5,8 +5,8 @@ public class ProgramConstants {
     // Board
     public static int ROWS = 10;
     public static int COLUMNS = 10;
-    public static char FIRST_COLUMN = 'a';
-    public static char LAST_COLUMN = 'j';
+    public static char FIRST_ROW = 'a';
+    public static char LAST_ROW = 'j';
 
     // Game Colors
     public static String COMPUTER_PIECE_COLOR = ANSIColorConstants.ANSI_YELLOW;

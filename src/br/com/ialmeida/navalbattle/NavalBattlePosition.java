@@ -10,7 +10,7 @@ public class NavalBattlePosition {
 
     public NavalBattlePosition(char row, int column) {
 
-        if (row < ProgramConstants.FIRST_COLUMN || row > ProgramConstants.LAST_COLUMN ||
+        if (row < ProgramConstants.FIRST_ROW || row > ProgramConstants.LAST_ROW ||
                 column < 0 || column > ProgramConstants.COLUMNS) {
             throw new NavalBattleException("Error instantiating ChessPosition. Valid values are from a0 to j9.");
         }
@@ -29,7 +29,7 @@ public class NavalBattlePosition {
 
     public Position toPosition() {
 
-        int row = this.row - ProgramConstants.FIRST_COLUMN;
+        int row = this.row - ProgramConstants.FIRST_ROW;
         int column = ProgramConstants.COLUMNS - this.column;
 
         return new Position(row, column);
@@ -38,7 +38,7 @@ public class NavalBattlePosition {
     public static NavalBattlePosition fromPosition(Position position) {
 
         int row = ProgramConstants.ROWS - position.getRow();
-        char column = (char) (ProgramConstants.FIRST_COLUMN - position.getColumn());
+        char column = (char) (ProgramConstants.FIRST_ROW - position.getColumn());
 
         return new NavalBattlePosition(column, row);
     }
