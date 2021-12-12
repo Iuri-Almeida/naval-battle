@@ -5,13 +5,13 @@ import br.com.ialmeida.boardgame.Position;
 
 public class NavalBattlePosition {
 
-    private int row;
-    private char column;
+    private char row;
+    private int column;
 
-    public NavalBattlePosition(char column, int row) {
+    public NavalBattlePosition(char row, int column) {
 
-        if (column < ProgramConstants.FIRST_COLUMN || column > ProgramConstants.LAST_COLUMN ||
-                row < 0 || row > ProgramConstants.ROWS) {
+        if (row < ProgramConstants.FIRST_COLUMN || row > ProgramConstants.LAST_COLUMN ||
+                column < 0 || column > ProgramConstants.COLUMNS) {
             throw new NavalBattleException("Error instantiating ChessPosition. Valid values are from a0 to j9.");
         }
 
@@ -19,18 +19,18 @@ public class NavalBattlePosition {
         this.column = column;
     }
 
-    public int getRow() {
+    public char getRow() {
         return row;
     }
 
-    public char getColumn() {
+    public int getColumn() {
         return column;
     }
 
     public Position toPosition() {
 
-        int row = ProgramConstants.ROWS - this.row;
-        int column = this.column - ProgramConstants.FIRST_COLUMN;
+        int row = this.row - ProgramConstants.FIRST_COLUMN;
+        int column = ProgramConstants.COLUMNS - this.column;
 
         return new Position(row, column);
     }

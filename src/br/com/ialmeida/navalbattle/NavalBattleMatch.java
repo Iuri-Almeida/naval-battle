@@ -168,21 +168,21 @@ public class NavalBattleMatch {
         return random.nextInt(ProgramConstants.ROWS) + 1;
     }
 
-    private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
-        computerBoard.placePiece(piece, new NavalBattlePosition(column, row).toPosition());
+    private void placeNewPiece(char row, int column, NavalBattlePiece piece) {
+        computerBoard.placePiece(piece, new NavalBattlePosition(row, column).toPosition());
     }
 
     private void initialSetup() {
         int i = 0;
 
         while (i < ProgramConstants.TOTAL_SUBMARINES) {
-            char column = generateRandomChar();
-            int row = generateRandomInt();
+            char row = generateRandomChar();
+            int column = generateRandomInt();
 
-            Position position = new NavalBattlePosition(column, row).toPosition();
+            Position position = new NavalBattlePosition(row, column).toPosition();
 
             if (!computerBoard.thereIsAPiece(position)) {
-                placeNewPiece(column, row, new Submarine(computerBoard, Player.COMPUTER));
+                placeNewPiece(row, column, new Submarine(computerBoard, Player.COMPUTER));
                 i++;
             }
         }

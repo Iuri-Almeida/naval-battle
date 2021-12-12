@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 public class UI {
 
+    private static final char[] NUMBER_ROWS = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+
     // https://stackoverflow.com/questions/2979383/java-clear-the-console
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -22,12 +24,12 @@ public class UI {
         try {
             String s = sc.nextLine();
 
-            char column = s.charAt(0);
-            int row = Integer.parseInt(s.substring(1));
+            char row = s.toLowerCase().charAt(0);
+            int column = 10 - Integer.parseInt(s.substring(1));
 
-            return new NavalBattlePosition(column, row);
+            return new NavalBattlePosition(row, column);
         } catch (RuntimeException e) {
-            throw new InputMismatchException("Error reading Position. Valid values are from a1 to j10.");
+            throw new InputMismatchException("Error reading Position. Valid values are from a0 to j9.");
         }
 
     }
@@ -81,18 +83,16 @@ public class UI {
 
         int rows = pieces.length;
         int columns = pieces[0].length;
-        int titleLength = title.length();
-        int numberOfSpaces = (46 - titleLength) / 2;
 
-        printTitle(title, numberOfSpaces, color);
+        printTitle(title, color);
 
-        System.out.println(ProgramConstants.INDICATORS_COLOR + "|    | a | b | c | d | e | f | g | h | i | j |" + ProgramConstants.RESET_COLOR);
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |" + ProgramConstants.RESET_COLOR);
 
         for (int i = 0; i < rows; i++) {
 
             printLine("");
 
-            System.out.printf("%s| %2d |%s ", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
+            System.out.printf("%s| %s |%s ", ProgramConstants.INDICATORS_COLOR, NUMBER_ROWS[i], ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -150,7 +150,11 @@ public class UI {
         System.out.print(" ");
     }
 
-    private static void printTitle(String title, int numberOfSpaces, String color) {
+    private static void printTitle(String title, String color) {
+
+        int titleLength = title.length();
+        int numberOfSpaces = (45 - titleLength) / 2;
+
         printLine(color);
         printSpaces(numberOfSpaces);
         System.out.print(color + title + ProgramConstants.RESET_COLOR);
@@ -160,7 +164,7 @@ public class UI {
     }
 
     private static void printLine(String color) {
-        System.out.println(color + "----------------------------------------------" + ProgramConstants.RESET_COLOR);
+        System.out.println(color + "---------------------------------------------" + ProgramConstants.RESET_COLOR);
     }
 
     private static void printSpaces(int numberOfSpaces) {
