@@ -27,7 +27,7 @@ public class UI {
 
             return new NavalBattlePosition(column, row);
         } catch (RuntimeException e) {
-            throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to j10.");
+            throw new InputMismatchException("Error reading Position. Valid values are from a1 to j10.");
         }
 
     }
