@@ -20,13 +20,8 @@ public class Program {
 
             try {
 
-                UI.printMatch(match);
-
                 UI.clearScreen();
-                UI.printBoard(match.getPieces(match.getPlayerBoard()));
-
-                System.out.println();
-                UI.printBoard(match.getPieces(match.getComputerBoard()));
+                UI.printMatch(match);
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -45,10 +40,7 @@ public class Program {
         sc.close();
 
         UI.clearScreen();
-        UI.printBoard(match.getPieces(match.getPlayerBoard()));
-
-        System.out.println();
-        UI.printBoard(match.getPieces(match.getComputerBoard()));
+        UI.printWinner(match);
 
     }
 }

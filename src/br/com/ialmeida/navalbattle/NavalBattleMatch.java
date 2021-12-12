@@ -14,6 +14,7 @@ public class NavalBattleMatch {
     private final Board playerBoard;
     private final Board computerBoard;
     private boolean gameEnded;
+    private final Random random = new Random();
 
     public NavalBattleMatch() {
         playerBoard = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
@@ -73,25 +74,28 @@ public class NavalBattleMatch {
         Position target = targetPosition.toPosition();
         makeMove(target, playerBoard);
 
-        gameEnded = testEndOfGame(computerBoard);
+        gameEnded = testEndOfGame(playerBoard);
 
         if (!gameEnded) {
             nextTurn();
+            performComputerMove();
         }
     }
 
     private void performComputerMove() {
 
-        Random random = new Random();
-
-        char column = (char) (random.nextInt((ProgramConstants.LAST_COLUMN + 1) - ProgramConstants.FIRST_COLUMN) + ProgramConstants.FIRST_COLUMN);
-        int row = random.nextInt(ProgramConstants.ROWS) + 1;
+        char column = generateRandomChar();
+        int row = generateRandomInt();
 
         Position target = new NavalBattlePosition(column, row).toPosition();
 
         makeMove(target, computerBoard);
 
-        gameEnded = testEndOfGame(playerBoard);
+        gameEnded = testEndOfGame(computerBoard);
+
+        if (!gameEnded) {
+            nextTurn();
+        }
     }
 
     private void makeMove(Position target, Board board) {
@@ -106,7 +110,7 @@ public class NavalBattleMatch {
             player = Player.COMPUTER;
         }
 
-        if (otherBoard.thereIsAPiece(target) && otherBoard.piece(target) instanceof Submarine) {
+        if (otherBoard.thereIsAPiece(target) && (otherBoard.piece(target) instanceof Submarine || otherBoard.piece(target) instanceof WrongShotWithSubmarine)) {
             if (board.thereIsAPiece(target) && board.piece(target) instanceof Submarine) {
                 board.placePieceWithoutException(new RightShotWithSubmarine(board, player), target);
             } else {
@@ -124,17 +128,13 @@ public class NavalBattleMatch {
     private void nextTurn() {
         turn++;
         currentPlayer = (currentPlayer == Player.PERSON) ? Player.COMPUTER : Player.PERSON;
-
-        performComputerMove();
-
-        turn++;
     }
 
-    private boolean testEndOfGame(Board opponentBoard) {
+    private boolean testEndOfGame(Board board) {
 
         int hits = 0;
 
-        NavalBattlePiece[][] pieces = getPieces(opponentBoard);
+        NavalBattlePiece[][] pieces = getPieces(board);
 
         for (int i = 0; i < pieces.length; i++) {
             for (int j = 0; j < pieces[0].length; j++) {
@@ -146,6 +146,14 @@ public class NavalBattleMatch {
         }
 
         return hits == 10;
+    }
+
+    private char generateRandomChar() {
+        return (char) (random.nextInt((ProgramConstants.LAST_COLUMN + 1) - ProgramConstants.FIRST_COLUMN) + ProgramConstants.FIRST_COLUMN);
+    }
+
+    private int generateRandomInt() {
+        return random.nextInt(ProgramConstants.ROWS) + 1;
     }
 
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {

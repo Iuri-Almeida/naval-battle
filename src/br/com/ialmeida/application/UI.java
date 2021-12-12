@@ -58,12 +58,26 @@ public class UI {
         }
     }
 
+    public static void printWinner(NavalBattleMatch match) {
+        printBoard(match.getPieces(match.getPlayerBoard()));
+        System.out.println();
+        printBoard(match.getPieces(match.getComputerBoard()));
+
+        Player winner = match.getCurrentPlayer();
+        String color = (winner == Player.PERSON) ? ProgramConstants.PERSON_PIECE_COLOR : ProgramConstants.COMPUTER_PIECE_COLOR;
+
+        System.out.println("\nWinner: " + color + winner + ProgramConstants.RESET_COLOR);
+    }
+
     public static void printMatch(NavalBattleMatch match) {
+
+        printBoard(match.getPieces(match.getPlayerBoard()));
+
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
     }
 
-    public static void printBoard(NavalBattlePiece[][] pieces) {
+    private static void printBoard(NavalBattlePiece[][] pieces) {
 
         int rows = pieces.length;
         int columns = pieces[0].length;
@@ -85,7 +99,7 @@ public class UI {
 
     }
 
-    public static void printBoard(NavalBattlePiece[][] pieces, boolean[][] possibleMoves) {
+    private static void printBoard(NavalBattlePiece[][] pieces, boolean[][] possibleMoves) {
 
         int rows = pieces.length;
         int columns = pieces[0].length;
@@ -118,9 +132,9 @@ public class UI {
         } else {
 
             if (piece.getPlayer() == Player.PERSON) {
-                System.out.print(ProgramConstants.WHITE_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+                System.out.print(ProgramConstants.PERSON_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
             } else {
-                System.out.print(ProgramConstants.BLACK_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+                System.out.print(ProgramConstants.COMPUTER_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
             }
 
         }
