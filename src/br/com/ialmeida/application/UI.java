@@ -36,7 +36,7 @@ public class UI {
 
         int i = 0;
 
-        while (i < 10) {
+        while (i < ProgramConstants.TOTAL_SUBMARINES) {
             try {
                 clearScreen();
                 System.out.println("Player Initial Setup");

@@ -14,4 +14,7 @@ public class ProgramConstants {
     public static String BACKGROUND_COLOR = ANSIColorConstants.ANSI_BLUE_BACKGROUND;
     public static String INDICATORS_COLOR = ANSIColorConstants.ANSI_GREEN;
     public static String RESET_COLOR = ANSIColorConstants.ANSI_RESET;
+
+    // Game Numbers
+    public static int TOTAL_SUBMARINES = 10;
 }

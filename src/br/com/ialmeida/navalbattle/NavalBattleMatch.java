@@ -145,7 +145,7 @@ public class NavalBattleMatch {
             }
         }
 
-        return hits == 10;
+        return hits == ProgramConstants.TOTAL_SUBMARINES;
     }
 
     private char generateRandomChar() {
@@ -161,15 +161,18 @@ public class NavalBattleMatch {
     }
 
     private void initialSetup() {
-        placeNewPiece('a', 1, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('b', 2, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('c', 3, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('d', 4, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('e', 5, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('f', 6, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('g', 7, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('h', 8, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('i', 9, new Submarine(computerBoard, Player.COMPUTER));
-        placeNewPiece('j', 10, new Submarine(computerBoard, Player.COMPUTER));
+        int i = 0;
+
+        while (i < ProgramConstants.TOTAL_SUBMARINES) {
+            char column = generateRandomChar();
+            int row = generateRandomInt();
+
+            Position position = new NavalBattlePosition(column, row).toPosition();
+
+            if (!computerBoard.thereIsAPiece(position)) {
+                placeNewPiece(column, row, new Submarine(computerBoard, Player.COMPUTER));
+                i++;
+            }
+        }
     }
 }
