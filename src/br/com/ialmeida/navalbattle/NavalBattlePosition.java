@@ -5,8 +5,8 @@ import br.com.ialmeida.boardgame.Position;
 
 public class NavalBattlePosition {
 
-    private char row;
-    private int column;
+    private final char row;
+    private final int column;
 
     public NavalBattlePosition(char row, int column) {
 
@@ -19,28 +19,12 @@ public class NavalBattlePosition {
         this.column = column;
     }
 
-    public char getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
     public Position toPosition() {
 
         int row = this.row - ProgramConstants.FIRST_ROW;
         int column = ProgramConstants.COLUMNS - this.column;
 
         return new Position(row, column);
-    }
-
-    public static NavalBattlePosition fromPosition(Position position) {
-
-        int row = ProgramConstants.ROWS - position.getRow();
-        char column = (char) (ProgramConstants.FIRST_ROW - position.getColumn());
-
-        return new NavalBattlePosition(column, row);
     }
 
     @Override

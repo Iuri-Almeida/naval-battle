@@ -42,7 +42,7 @@ public class UI {
             try {
                 clearScreen();
                 System.out.println("Player Initial Setup");
-                printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
+                printBoard(match.getPieces(match.getPlayerBoard()), ProgramConstants.PLAYER, ProgramConstants.PERSON_PIECE_COLOR);
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -61,9 +61,9 @@ public class UI {
     }
 
     public static void printWinner(NavalBattleMatch match) {
-        printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
+        printBoard(match.getPieces(match.getPlayerBoard()), ProgramConstants.PLAYER, ProgramConstants.PERSON_PIECE_COLOR);
         System.out.println();
-        printBoard(match.getPieces(match.getComputerBoard()), "COMPUTADOR", ProgramConstants.COMPUTER_PIECE_COLOR);
+        printBoard(match.getPieces(match.getComputerBoard()), ProgramConstants.COMPUTER, ProgramConstants.COMPUTER_PIECE_COLOR);
 
         Player winner = match.getCurrentPlayer();
         String color = (winner == Player.PERSON) ? ProgramConstants.PERSON_PIECE_COLOR : ProgramConstants.COMPUTER_PIECE_COLOR;
@@ -73,7 +73,7 @@ public class UI {
 
     public static void printMatch(NavalBattleMatch match) {
 
-        printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
+        printBoard(match.getPieces(match.getPlayerBoard()), ProgramConstants.PLAYER, ProgramConstants.PERSON_PIECE_COLOR);
 
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
@@ -96,7 +96,7 @@ public class UI {
 
             for (int j = 0; j < columns; j++) {
 
-                printPiece(pieces[i][j], false);
+                printPiece(pieces[i][j]);
 
             }
 
@@ -107,36 +107,10 @@ public class UI {
 
     }
 
-    private static void printBoard(NavalBattlePiece[][] pieces, boolean[][] possibleMoves) {
-
-        int rows = pieces.length;
-        int columns = pieces[0].length;
-
-        for (int i = 0; i < rows; i++) {
-
-            System.out.printf("%s%2d %s", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
-
-            for (int j = 0; j < columns; j++) {
-
-                printPiece(pieces[i][j], possibleMoves[i][j]);
-
-            }
-
-            System.out.println();
-        }
-
-        System.out.println(ProgramConstants.INDICATORS_COLOR + "   a b c d e f g h i j" + ProgramConstants.RESET_COLOR);
-
-    }
-
-    private static void printPiece(NavalBattlePiece piece, boolean background) {
-
-        if (background) {
-            System.out.print(ProgramConstants.BACKGROUND_COLOR);
-        }
+    private static void printPiece(NavalBattlePiece piece) {
 
         if (piece == null) {
-            System.out.print("  |" + ProgramConstants.RESET_COLOR);
+            System.out.print("  |");
         } else {
 
             if (piece.getPlayer() == Player.PERSON) {

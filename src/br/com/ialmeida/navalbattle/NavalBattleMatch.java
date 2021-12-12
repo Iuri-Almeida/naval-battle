@@ -15,7 +15,7 @@ public class NavalBattleMatch {
     private final Board playerBoard;
     private final Board computerBoard;
     private boolean gameEnded;
-    private final ArrayList<String> positionsAlreadyVerified = new ArrayList<String>();
+    private final ArrayList<String> positionsAlreadyVerified = new ArrayList<>();
     private final Random random = new Random();
 
     public NavalBattleMatch() {
@@ -63,13 +63,9 @@ public class NavalBattleMatch {
         return pieces;
     }
 
-    public boolean[][] possibleMoves() {
-        return playerBoard.possibleMoves();
-    }
-
     public void performFirstMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
-        playerBoard.placePiece(new Submarine(playerBoard, Player.PERSON), target);
+        playerBoard.placePiece(new Submarine(Player.PERSON), target);
     }
 
     public void performMove(NavalBattlePosition targetPosition) {
@@ -124,15 +120,15 @@ public class NavalBattleMatch {
 
         if (otherBoard.thereIsAPiece(target) && (otherBoard.piece(target) instanceof Submarine || otherBoard.piece(target) instanceof WrongShotWithSubmarine)) {
             if (board.thereIsAPiece(target) && board.piece(target) instanceof Submarine) {
-                board.placePieceWithoutException(new RightShotWithSubmarine(board, player), target);
+                board.placePieceWithoutException(new RightShotWithSubmarine(player), target);
             } else {
-                board.placePieceWithoutException(new RightShot(board, player), target);
+                board.placePieceWithoutException(new RightShot(player), target);
             }
         } else {
             if (board.thereIsAPiece(target) && (board.piece(target) instanceof Submarine || board.piece(target) instanceof WrongShotWithSubmarine)) {
-                board.placePieceWithoutException(new WrongShotWithSubmarine(board, player), target);
+                board.placePieceWithoutException(new WrongShotWithSubmarine(player), target);
             } else {
-                board.placePieceWithoutException(new WrongShot(board, player), target);
+                board.placePieceWithoutException(new WrongShot(player), target);
             }
         }
     }
@@ -148,9 +144,9 @@ public class NavalBattleMatch {
 
         NavalBattlePiece[][] pieces = getPieces(board);
 
-        for (int i = 0; i < pieces.length; i++) {
+        for (NavalBattlePiece[] navalBattlePieces : pieces) {
             for (int j = 0; j < pieces[0].length; j++) {
-                NavalBattlePiece piece = pieces[i][j];
+                NavalBattlePiece piece = navalBattlePieces[j];
                 if (piece instanceof RightShot || piece instanceof RightShotWithSubmarine) {
                     hits++;
                 }
@@ -182,7 +178,7 @@ public class NavalBattleMatch {
             Position position = new NavalBattlePosition(row, column).toPosition();
 
             if (!computerBoard.thereIsAPiece(position)) {
-                placeNewPiece(row, column, new Submarine(computerBoard, Player.COMPUTER));
+                placeNewPiece(row, column, new Submarine(Player.COMPUTER));
                 i++;
             }
         }

@@ -1,12 +1,11 @@
 package br.com.ialmeida.navalbattle.pieces;
 
-import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.navalbattle.NavalBattlePiece;
 import br.com.ialmeida.navalbattle.Player;
 
 public class RightShotWithSubmarine extends NavalBattlePiece {
-    public RightShotWithSubmarine(Board board, Player player) {
-        super(board, player);
+    public RightShotWithSubmarine(Player player) {
+        super(player);
     }
 
     @Override

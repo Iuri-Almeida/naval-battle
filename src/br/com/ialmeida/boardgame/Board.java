@@ -42,52 +42,6 @@ public class Board {
         return piece(position.getRow(), position.getColumn());
     }
 
-    public boolean[][] possibleMoves() {
-
-        boolean[][] mat = new boolean[this.getRows()][this.getColumns()];
-
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[0].length; j++) {
-                Position position = new Position(i, j);
-                if (this.positionExists(position) && !this.thereIsAPiece(position)) {
-                    mat[i][j] = true;
-                }
-            }
-        }
-
-        return mat;
-    }
-
-    public boolean possibleMove(Position position) {
-
-        int row = position.getRow();
-        int column = position.getColumn();
-
-        return possibleMoves()[row][column];
-    }
-
-    public boolean isThereAnyPossibleMove() {
-
-        boolean[][] mat = possibleMoves();
-
-        int row = mat.length;
-        int column = mat[0].length;
-
-        for (int i = 0; i < row; i++) {
-
-            for (int j = 0; j < column; j++) {
-
-                if (mat[i][j]) {
-                    return true;
-                }
-
-            }
-
-        }
-
-        return false;
-    }
-
     public void placePiece(Piece piece, Position position) {
 
         if (thereIsAPiece(position)) {
