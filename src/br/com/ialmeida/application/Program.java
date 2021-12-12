@@ -26,6 +26,9 @@ public class Program {
                 UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
 
                 System.out.println();
+                UI.printBoard(match.getPieces(match.getComputerBoard()));
+
+                System.out.println();
                 System.out.print("Target: ");
 
                 NavalBattlePosition target = UI.readNavalBattlePosition(sc);

@@ -6,6 +6,8 @@ import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.navalbattle.pieces.*;
 
+import java.util.Random;
+
 public class NavalBattleMatch {
 
     private int turn;
@@ -65,22 +67,45 @@ public class NavalBattleMatch {
 
     public void performMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
-        makeMove(target);
+        makeMove(target, playerBoard);
         nextTurn();
     }
 
-    private void makeMove(Position target) {
-        if (computerBoard.thereIsAPiece(target)) {
-            if (playerBoard.thereIsAPiece(target)) {
-                playerBoard.placePieceWithoutException(new RightShotWithSubmarine(playerBoard, Player.PERSON), target);
+    private void performComputerMove() {
+
+        Random random = new Random();
+
+        char column = (char) (random.nextInt((ProgramConstants.LAST_COLUMN + 1) - ProgramConstants.FIRST_COLUMN) + ProgramConstants.FIRST_COLUMN);
+        int row = random.nextInt(ProgramConstants.ROWS) + 1;
+
+        Position target = new NavalBattlePosition(column, row).toPosition();
+
+        makeMove(target, computerBoard);
+    }
+
+    private void makeMove(Position target, Board board) {
+
+        Board otherBoard;
+        Player player;
+        if (board.equals(playerBoard)) {
+            otherBoard = computerBoard;
+            player = Player.PERSON;
+        } else {
+            otherBoard = playerBoard;
+            player = Player.COMPUTER;
+        }
+
+        if (otherBoard.thereIsAPiece(target)) {
+            if (board.thereIsAPiece(target)) {
+                board.placePieceWithoutException(new RightShotWithSubmarine(board, player), target);
             } else {
-                playerBoard.placePieceWithoutException(new RightShot(playerBoard, Player.PERSON), target);
+                board.placePieceWithoutException(new RightShot(board, player), target);
             }
         } else {
-            if (playerBoard.thereIsAPiece(target)) {
-                playerBoard.placePieceWithoutException(new WrongShotWithSubmarine(playerBoard, Player.PERSON), target);
+            if (board.thereIsAPiece(target)) {
+                board.placePieceWithoutException(new WrongShotWithSubmarine(board, player), target);
             } else {
-                playerBoard.placePieceWithoutException(new WrongShot(playerBoard, Player.PERSON), target);
+                board.placePieceWithoutException(new WrongShot(board, player), target);
             }
         }
     }
@@ -88,6 +113,8 @@ public class NavalBattleMatch {
     private void nextTurn() {
         turn++;
         currentPlayer = (currentPlayer == Player.PERSON) ? Player.COMPUTER : Player.PERSON;
+
+        performComputerMove();
     }
 
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
