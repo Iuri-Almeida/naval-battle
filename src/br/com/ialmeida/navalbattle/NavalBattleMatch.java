@@ -139,21 +139,7 @@ public class NavalBattleMatch {
     }
 
     private boolean testEndOfGame(Board board) {
-
-        int hits = 0;
-
-        NavalBattlePiece[][] pieces = getPieces(board);
-
-        for (NavalBattlePiece[] navalBattlePieces : pieces) {
-            for (int j = 0; j < pieces[0].length; j++) {
-                NavalBattlePiece piece = navalBattlePieces[j];
-                if (piece instanceof RightShot || piece instanceof RightShotWithSubmarine) {
-                    hits++;
-                }
-            }
-        }
-
-        return hits == ProgramConstants.TOTAL_SUBMARINES;
+        return board.getHits() == ProgramConstants.TOTAL_SUBMARINES;
     }
 
     private char generateRandomChar() {
