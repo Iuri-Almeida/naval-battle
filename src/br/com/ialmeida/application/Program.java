@@ -23,7 +23,10 @@ public class Program {
                 UI.printMatch(match);
 
                 UI.clearScreen();
-                UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
+                UI.printBoard(match.getPieces(match.getPlayerBoard()));
+
+                System.out.println();
+                UI.printBoard(match.getPieces(match.getComputerBoard()));
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -42,7 +45,7 @@ public class Program {
         sc.close();
 
         UI.clearScreen();
-        UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
+        UI.printBoard(match.getPieces(match.getPlayerBoard()));
 
         System.out.println();
         UI.printBoard(match.getPieces(match.getComputerBoard()));
