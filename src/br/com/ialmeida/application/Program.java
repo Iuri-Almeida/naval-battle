@@ -16,7 +16,7 @@ public class Program {
 
         UI.setupPlayerBoard(match, sc);
 
-        while (true) {
+        while (!match.isGameEnded()) {
 
             try {
 
@@ -24,9 +24,6 @@ public class Program {
 
                 UI.clearScreen();
                 UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
-
-                System.out.println();
-                UI.printBoard(match.getPieces(match.getComputerBoard()));
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -42,6 +39,13 @@ public class Program {
 
         }
 
-//        sc.close();
+        sc.close();
+
+        UI.clearScreen();
+        UI.printBoard(match.getPieces(match.getPlayerBoard()), match.possibleMoves());
+
+        System.out.println();
+        UI.printBoard(match.getPieces(match.getComputerBoard()));
+
     }
 }

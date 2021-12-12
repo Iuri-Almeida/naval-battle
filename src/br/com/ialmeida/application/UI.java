@@ -1,6 +1,5 @@
 package br.com.ialmeida.application;
 
-import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.BoardException;
 import br.com.ialmeida.navalbattle.NavalBattleMatch;
 import br.com.ialmeida.navalbattle.NavalBattlePiece;
@@ -62,7 +61,6 @@ public class UI {
     public static void printMatch(NavalBattleMatch match) {
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
-        System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
     }
 
     public static void printBoard(NavalBattlePiece[][] pieces) {

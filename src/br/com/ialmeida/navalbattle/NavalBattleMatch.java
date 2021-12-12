@@ -2,7 +2,6 @@ package br.com.ialmeida.navalbattle;
 
 import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
-import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.navalbattle.pieces.*;
 
@@ -14,6 +13,7 @@ public class NavalBattleMatch {
     private Player currentPlayer;
     private final Board playerBoard;
     private final Board computerBoard;
+    private boolean gameEnded;
 
     public NavalBattleMatch() {
         playerBoard = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
@@ -38,6 +38,10 @@ public class NavalBattleMatch {
 
     public Board getComputerBoard() {
         return computerBoard;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
     }
 
     public NavalBattlePiece[][] getPieces(Board board) {
@@ -68,7 +72,12 @@ public class NavalBattleMatch {
     public void performMove(NavalBattlePosition targetPosition) {
         Position target = targetPosition.toPosition();
         makeMove(target, playerBoard);
-        nextTurn();
+
+        gameEnded = testEndOfGame(computerBoard);
+
+        if (!gameEnded) {
+            nextTurn();
+        }
     }
 
     private void performComputerMove() {
@@ -81,6 +90,8 @@ public class NavalBattleMatch {
         Position target = new NavalBattlePosition(column, row).toPosition();
 
         makeMove(target, computerBoard);
+
+        gameEnded = testEndOfGame(playerBoard);
     }
 
     private void makeMove(Position target, Board board) {
@@ -115,6 +126,26 @@ public class NavalBattleMatch {
         currentPlayer = (currentPlayer == Player.PERSON) ? Player.COMPUTER : Player.PERSON;
 
         performComputerMove();
+
+        turn++;
+    }
+
+    private boolean testEndOfGame(Board opponentBoard) {
+
+        int hits = 0;
+
+        NavalBattlePiece[][] pieces = getPieces(opponentBoard);
+
+        for (int i = 0; i < pieces.length; i++) {
+            for (int j = 0; j < pieces[0].length; j++) {
+                NavalBattlePiece piece = pieces[i][j];
+                if (piece instanceof RightShot || piece instanceof RightShotWithSubmarine) {
+                    hits++;
+                }
+            }
+        }
+
+        return hits == 10;
     }
 
     private void placeNewPiece(char column, int row, NavalBattlePiece piece) {
