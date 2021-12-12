@@ -40,7 +40,7 @@ public class UI {
             try {
                 clearScreen();
                 System.out.println("Player Initial Setup");
-                printBoard(match.getPieces(match.getPlayerBoard()));
+                printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -59,9 +59,9 @@ public class UI {
     }
 
     public static void printWinner(NavalBattleMatch match) {
-        printBoard(match.getPieces(match.getPlayerBoard()));
+        printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
         System.out.println();
-        printBoard(match.getPieces(match.getComputerBoard()));
+        printBoard(match.getPieces(match.getComputerBoard()), "COMPUTADOR", ProgramConstants.COMPUTER_PIECE_COLOR);
 
         Player winner = match.getCurrentPlayer();
         String color = (winner == Player.PERSON) ? ProgramConstants.PERSON_PIECE_COLOR : ProgramConstants.COMPUTER_PIECE_COLOR;
@@ -71,20 +71,28 @@ public class UI {
 
     public static void printMatch(NavalBattleMatch match) {
 
-        printBoard(match.getPieces(match.getPlayerBoard()));
+        printBoard(match.getPieces(match.getPlayerBoard()), "JOGADOR", ProgramConstants.PERSON_PIECE_COLOR);
 
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
     }
 
-    private static void printBoard(NavalBattlePiece[][] pieces) {
+    private static void printBoard(NavalBattlePiece[][] pieces, String title, String color) {
 
         int rows = pieces.length;
         int columns = pieces[0].length;
+        int titleLength = title.length();
+        int numberOfSpaces = (46 - titleLength) / 2;
+
+        printTitle(title, numberOfSpaces, color);
+
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "|    | a | b | c | d | e | f | g | h | i | j |" + ProgramConstants.RESET_COLOR);
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.printf("%s%2d %s", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
+            printLine("");
+
+            System.out.printf("%s| %2d |%s ", ProgramConstants.INDICATORS_COLOR, rows - i, ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -95,7 +103,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println(ProgramConstants.INDICATORS_COLOR + "   a b c d e f g h i j" + ProgramConstants.RESET_COLOR);
+        printLine("");
 
     }
 
@@ -128,17 +136,36 @@ public class UI {
         }
 
         if (piece == null) {
-            System.out.print("-" + ProgramConstants.RESET_COLOR);
+            System.out.print("  |" + ProgramConstants.RESET_COLOR);
         } else {
 
             if (piece.getPlayer() == Player.PERSON) {
-                System.out.print(ProgramConstants.PERSON_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+                System.out.print(ProgramConstants.PERSON_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR + " |");
             } else {
-                System.out.print(ProgramConstants.COMPUTER_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+                System.out.print(ProgramConstants.COMPUTER_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR + " |");
             }
 
         }
 
         System.out.print(" ");
+    }
+
+    private static void printTitle(String title, int numberOfSpaces, String color) {
+        printLine(color);
+        printSpaces(numberOfSpaces);
+        System.out.print(color + title + ProgramConstants.RESET_COLOR);
+        printSpaces(numberOfSpaces);
+        System.out.println();
+        printLine(color);
+    }
+
+    private static void printLine(String color) {
+        System.out.println(color + "----------------------------------------------" + ProgramConstants.RESET_COLOR);
+    }
+
+    private static void printSpaces(int numberOfSpaces) {
+        for (int i = 0; i < numberOfSpaces; i++) {
+            System.out.print(" ");
+        }
     }
 }
