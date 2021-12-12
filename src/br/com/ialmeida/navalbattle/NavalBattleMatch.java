@@ -5,6 +5,7 @@ import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.navalbattle.pieces.*;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class NavalBattleMatch {
@@ -14,6 +15,7 @@ public class NavalBattleMatch {
     private final Board playerBoard;
     private final Board computerBoard;
     private boolean gameEnded;
+    private final ArrayList<String> positionsAlreadyVerified = new ArrayList<String>();
     private final Random random = new Random();
 
     public NavalBattleMatch() {
@@ -84,8 +86,18 @@ public class NavalBattleMatch {
 
     private void performComputerMove() {
 
-        char column = generateRandomChar();
-        int row = generateRandomInt();
+        char column;
+        int row;
+        String pos;
+        do {
+            column = generateRandomChar();
+            row = generateRandomInt();
+
+            pos = "" + column + row;
+
+        } while (positionsAlreadyVerified.contains(pos));
+
+        positionsAlreadyVerified.add(pos);
 
         Position target = new NavalBattlePosition(column, row).toPosition();
 
