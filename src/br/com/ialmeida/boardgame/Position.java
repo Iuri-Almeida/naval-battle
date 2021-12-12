@@ -1,5 +1,8 @@
 package br.com.ialmeida.boardgame;
 
+import br.com.ialmeida.application.ProgramConstants;
+import br.com.ialmeida.navalbattle.NavalBattlePosition;
+
 public class Position {
     private final int row;
     private final int column;
@@ -15,6 +18,14 @@ public class Position {
 
     public int getColumn() {
         return column;
+    }
+
+    public NavalBattlePosition toNavalBattlePosition() {
+
+        char row = (char) (ProgramConstants.FIRST_ROW - this.row);
+        int column = ProgramConstants.COLUMNS - this.column;
+
+        return new NavalBattlePosition(row, column);
     }
 
     @Override

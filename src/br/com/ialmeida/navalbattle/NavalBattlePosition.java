@@ -29,6 +29,6 @@ public class NavalBattlePosition {
 
     @Override
     public String toString() {
-        return "" + column + row;
+        return "" + row + Math.abs(column - 10);
     }
 }
