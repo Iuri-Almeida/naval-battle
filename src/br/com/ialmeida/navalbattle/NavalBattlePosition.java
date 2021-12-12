@@ -12,7 +12,7 @@ public class NavalBattlePosition {
 
         if (row < ProgramConstants.FIRST_ROW || row > ProgramConstants.LAST_ROW ||
                 column < 0 || column > ProgramConstants.COLUMNS) {
-            throw new NavalBattleException("Error instantiating ChessPosition. Valid values are from a0 to j9.");
+            throw new NavalBattleException("Error instantiating Position. Valid values are from a0 to j9.");
         }
 
         this.row = row;
