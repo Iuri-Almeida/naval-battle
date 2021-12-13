@@ -10,6 +10,6 @@ public class RightShotWithSubmarine extends NavalBattlePiece {
 
     @Override
     public String toString() {
-        return "n";
+        return "X";
     }
 }

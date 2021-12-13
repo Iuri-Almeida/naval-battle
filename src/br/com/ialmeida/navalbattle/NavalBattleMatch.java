@@ -118,14 +118,18 @@ public class NavalBattleMatch {
             player = Player.COMPUTER;
         }
 
-        if (otherBoard.thereIsAPiece(target) && (otherBoard.piece(target) instanceof Submarine || otherBoard.piece(target) instanceof WrongShotWithSubmarine)) {
-            if (board.thereIsAPiece(target) && board.piece(target) instanceof Submarine) {
+        if (otherBoard.thereIsAPiece(target) && (otherBoard.piece(target) instanceof Submarine ||
+                                                 otherBoard.piece(target) instanceof RightShotWithSubmarine ||
+                                                 otherBoard.piece(target) instanceof WrongShotWithSubmarine)) {
+            if (board.thereIsAPiece(target) && (board.piece(target) instanceof Submarine ||
+                                                board.piece(target) instanceof RightShotWithSubmarine)) {
                 board.placePieceWithoutException(new RightShotWithSubmarine(player), target);
             } else {
                 board.placePieceWithoutException(new RightShot(player), target);
             }
         } else {
-            if (board.thereIsAPiece(target) && (board.piece(target) instanceof Submarine || board.piece(target) instanceof WrongShotWithSubmarine)) {
+            if (board.thereIsAPiece(target) && (board.piece(target) instanceof Submarine ||
+                                                board.piece(target) instanceof WrongShotWithSubmarine)) {
                 board.placePieceWithoutException(new WrongShotWithSubmarine(player), target);
             } else {
                 board.placePieceWithoutException(new WrongShot(player), target);
